@@ -1,35 +1,75 @@
 {%extends 'base.html' %}
 
-{% block body %}
 
-	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html"><i class="fas fa-chalkboard-teacher"></i> LearnWell</a>
-                </div>
-                <ul class="navbar-nav ml-auto nav-right">
-                    <li class="nav-item"><a class="nav-link" href="{% url 'bsl:register'}"><i class="fas fa-user-plus"></i> SignUp</a></li>
-                </ul>
-            </div>
-        </nav>
-
-        <form class="form-signin" method="post" action="{% url 'bsl:login' %}">
-          
-          	<p>
-	        	<p>{{question.text}}</p>
-	        	<input type="radio" name="ans" value="{{question.text.optionA}}">
-	        	<input type="radio" name="ans" value="{{question.text.optionB}}">
-	        	<input type="radio" name="ans" value="{{question.text.optionC}}">
-	        	<input type="radio" name="ans" value="{{question.text.optionD}}">
-	        </p>
-        </form>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+{%block head%}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 {%endblock%}
 
-<!-- 
-<body class="text-center">
-       
-    </body>
-</html>
- -->
+{% block body %}
+
+        <script type="text/javascript">
+            var start_time=Date.now();
+        </script>
+
+
+        <script type="text/javascript">
+
+
+
+            clicks=0;
+
+            function clicked(){
+                var clickid=document.getElementById('clickid');
+                   var time_diffid=document.getElementById('time_diffid');
+                clicks+=1;
+                console.log(clicks);
+            }
+
+            function submitted(){
+                   var clickid=document.getElementById('clickid');
+                   var time_diffid=document.getElementById('time_diffid');
+                end_time=Date.now();
+                diff=(end_time-start_time)/1000;
+
+                clickid.value=clicks.toString();
+                time_diffid.value=diff.toString();
+
+            }
+
+
+        </script>
+
+                <form class="form-signin" method="post" action="{% url 'bsl:submitAnswer' question.id 'A' %}" style="max-width:50%">
+                    {%csrf_token%}
+                <h3>{{question.text}} :</h3><br>
+                <p>
+                    <label for="optionA">{{question.optionA}}</label>
+                    <input type="radio" onclick="clicked()" name="ans" value="A">
+                </p>
+                <p>
+                    <label for="optionB" >{{question.optionB}}</label>
+                    <input type="radio" onclick="clicked()" name="ans" value="B">
+                </p>
+                <p>
+                    <label for="optionC" >{{question.optionC}}</label>
+                    <input type="radio" onclick="clicked()" name="ans" value="C">
+                </p>
+                <p>
+                    <label for="optionD" >{{question.optionD}}</label>
+                    <input type="radio" onclick="clicked()" name="ans" value="D">
+                </p>
+
+                <input type="text" name="clicks" id="clickid" value="" hidden="true">
+                <input type="text" name="time_diff" id="time_diffid" value="" hidden="true">
+
+
+                <div id="submit">
+                    <button name='submit' onclick="submitted()" class="btn btn-lg btn-primary btn-block" id="submit_but" >Submit Answer</button>
+                </div>
+                </form>
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+{%endblock%}

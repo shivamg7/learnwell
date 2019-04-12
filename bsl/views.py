@@ -12,7 +12,7 @@ import smtplib
 import random
 
 
-from .models import Question,user
+from .models import Question,user,Attempt
 
 # Create your views here.
 
@@ -116,14 +116,26 @@ def showQuiz(request):
     count = Question.objects.all().count()
     slice = random.random() * (count - 10)
     myQuestion = Question.objects.all()[slice: slice+1]
-    #Receive a POST request
-
-
-
-    #Add new objects to db
 
     #render pages
     return render(request, 'bsl/quiz.html', {'question':myQuestion[0]})
 
 def submitAnswer(request,questionId,answer):
-    
+    print(request.POST['clicks'])
+    print(request.POST['time_diff'])
+    answer = request.POST.get('ans')
+    questionVar = Question.objects.get(id=questionId)
+    userVar = user.objects.get(id=request.user.id)
+    if(questionVar.answer==answer):
+        result = 'C'
+    else:
+        result = 'W'
+
+    print(answer+" correct is "+questionVar.answer)
+    attempVar = Attempt(question=questionVar,userAtt=userVar,result=result)
+    attempVar.save()
+
+    return HttpResponseRedirect(reverse('bsl:quiz'))
+
+def stats(request):
+    return
