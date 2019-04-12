@@ -2,8 +2,34 @@
 
 {% block body %}
 
-<div class="container">
-  <p> HELLO </p>
-  <p>{{question.text}}</p>
-</div>
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html"><i class="fas fa-chalkboard-teacher"></i> LearnWell</a>
+                </div>
+                <ul class="navbar-nav ml-auto nav-right">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'bsl:register'}"><i class="fas fa-user-plus"></i> SignUp</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <form class="form-signin" method="post" action="{% url 'bsl:login' %}">
+          
+          	<p>
+	        	<p>{{question.text}}</p>
+	        	<input type="radio" name="ans" value="{{question.text.optionA}}">
+	        	<input type="radio" name="ans" value="{{question.text.optionB}}">
+	        	<input type="radio" name="ans" value="{{question.text.optionC}}">
+	        	<input type="radio" name="ans" value="{{question.text.optionD}}">
+	        </p>
+        </form>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 {%endblock%}
+
+<!-- 
+<body class="text-center">
+       
+    </body>
+</html>
+ -->
