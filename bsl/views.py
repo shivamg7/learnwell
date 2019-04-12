@@ -9,12 +9,15 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.models import User
 import smtplib
+import random
 
+
+from .models import Question,user
 
 # Create your views here.
 
 def index(request):
-    
+
     if request.user.is_authenticated:
         userId = User.objects.get(id=request.user.id)
         return HttpResponseRedirect(reverse('bsl:dashboard'))
@@ -106,3 +109,18 @@ def register_user(usr,mail,passcode):
 
 def dashboard(request):
     return render(request,'bsl/dashboard.html')
+
+
+def showQuiz(request):
+    #Get some question from the database
+    count = Question.objects.all().count()
+    slice = random.random() * (count - 10)
+    myQuestion = Question.objects.all()[slice: slice+1]
+    #Receive a POST request
+
+    
+
+    #Add new objects to db
+
+    #render pages
+    return render(request, 'bsl/quiz.html', {'question':myQuestion[0]})
