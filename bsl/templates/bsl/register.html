@@ -28,11 +28,11 @@
 			  }
 			}
 		 </script>
-        
+
     </head>
 
     <body>
-        
+
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container">
                 <div class="navbar-header">
@@ -43,8 +43,8 @@
                 </ul>
             </div>
         </nav>
-        
-        
+
+
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -53,10 +53,11 @@
                         <h4 class="card-title mt-2">Sign up</h4>
                     </header>
                     <article class="card-body">
-                    <form id="c_registration" method="post" action="">
+                    <form id="c_registration" method="post" action="{% url 'bsl:register' %}">
+                      {%csrf_token%}
                         <div class="form-row">
                             <div class="col form-group">
-                                <label for="input_fname">First name</label>   
+                                <label for="input_fname">First name</label>
                                 <input type="text" class="form-control" name="fname" id="input_fname" required>
                             </div> <!-- form-group end.// -->
                             <div class="col form-group">
@@ -70,11 +71,11 @@
                         </div> <!-- form-group end.// -->
                         <div class="form-row">
                             <div class="col form-group">
-                                <label for="input_phone">Contact Number </label>   
+                                <label for="input_phone">Contact Number </label>
                                 <input type="text" class="form-control" name="contact" id="input_phone" pattern="0?[0-9]{10}" maxlength="11" title="Please Enter your 10 digit mobile number" required>
                             </div> <!-- form-group end.// -->
                         </div>
-                        
+
                         <div class="form-group">
                             <label class="form-check form-check-inline">
                               <input class="form-check-input" type="radio" name="gender" value="Male" required>
@@ -94,16 +95,16 @@
                             <input class="form-control" type="password" data-minlength="6" name="password" id="input_pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
 								   title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters"
 								    onkeyup='check();' required>
-                        </div> <!-- form-group end.// -->  
+                        </div> <!-- form-group end.// -->
                         <div class="form-group">
                             <label for="input_pass_conf">Confirm password</label>
                             <input class="form-control" type="password" id="input_pass_conf" onkeyup='check()'required>
 							<span id='message'></span>
-                        </div> <!-- form-group end.// -->  
+                        </div> <!-- form-group end.// -->
                         <div class="form-group">
                             <button type="submit" id="register" class="btn btn-primary btn-block"> Register  </button>
-                        </div> <!-- form-group// -->      
-                        <small class="text-muted">By clicking the 'Register' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>                                          
+                        </div> <!-- form-group// -->
+                        <small class="text-muted">By clicking the 'Register' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>
                     </form>
                     </article> <!-- card-body end .// -->
                     <div class="border-top card-body text-center">Have an account? <a href="login.html">Log In</a></div>
@@ -113,7 +114,7 @@
             </div> <!-- row.//-->
 
 
-        </div> 
+        </div>
         <!--container end.//-->
         <br><br>
 <!--         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->

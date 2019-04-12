@@ -10,8 +10,11 @@ from django.conf.urls.static import static
 from . import views
 
 
-app_name = 'evite'
+app_name = 'bsl'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('login/', views.login_, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('register/', views.register, name='register'),
 ]

@@ -10,7 +10,7 @@
         <title>
             LearnWell
         </title>
-		
+
 		<style type="text/css">
 			html,
 			body {
@@ -57,35 +57,39 @@
 			  border-top-right-radius: 0;
 			}
 
-		</style>	
-		
-		
+		</style>
+
+
     </head>
     <body class="text-center">
-        
+      {%if error_message%}
+        {{error_message}}
+      {%endif%}
        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="index.html"><i class="fas fa-chalkboard-teacher"></i> LearnWell</a>
                 </div>
                 <ul class="navbar-nav ml-auto nav-right">
-                    <li class="nav-item"><a class="nav-link" href="signup.html"><i class="fas fa-user-plus"></i> SignUp</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'bsl:register'}"><i class="fas fa-user-plus"></i> SignUp</a></li>
                 </ul>
             </div>
         </nav>
-        
-        <form class="form-signin" method="post" action="">
+
+        <form class="form-signin" method="post" action="{% url 'bsl:login' %}">
+          {%csrf_token%}
             <img class="mb-4" src="images/signin.png" alt="signin" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
+            <label for="username" class="sr-only">username</label>
+            <input  id="username" class="form-control" name="username" placeholder="username" required autofocus>
             <label for="inputPassword" class="sr-only">Password</label>
             <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
 <!--            <span id='message'></span>-->
-            
-            <button class="btn btn-lg btn-primary btn-block" id="signin" type="submit">Sign in</button>
+
+            <button name='login' class="btn btn-lg btn-primary btn-block" id="login" type="submit">Sign in</button>
+
             <hr align="center">
-            <p class="mt-2 mb-3 text-muted"> Don't have an Account? <a href="signup.html">Create One</a></p>
+            <p class="mt-2 mb-3 text-muted"> Don't have an Account? <a href="{% url 'bsl:register' %}">Create One</a></p>
         </form>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </body>
