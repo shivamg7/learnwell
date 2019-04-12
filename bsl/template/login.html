@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Yash Agrawal and Shivam Kalhans">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="css/loginstyle.css">
+        <link rel="shortcut icon" href="icon.png" />
+        <title>
+            LearnWell
+        </title>
+		
+		<style type="text/css">
+			html,
+			body {
+			  height: 100%;
+			}
+
+			body {
+			  display: -ms-flexbox;
+			  display: flex;
+			  -ms-flex-align: center;
+			  align-items: center;
+			  padding-top: 40px;
+			  padding-bottom: 40px;
+			  background-color: #f5f5f5;
+			}
+
+			.form-signin {
+			  width: 100%;
+			  max-width: 330px;
+			  padding: 15px;
+			  margin: auto;
+			}
+			.form-signin .checkbox {
+			  font-weight: 400;
+			}
+			.form-signin .form-control {
+			  position: relative;
+			  box-sizing: border-box;
+			  height: auto;
+			  padding: 10px;
+			  font-size: 16px;
+			}
+			.form-signin .form-control:focus {
+			  z-index: 2;
+			}
+			.form-signin input[type="email"] {
+			  margin-bottom: -1px;
+			  border-bottom-right-radius: 0;
+			  border-bottom-left-radius: 0;
+			}
+			.form-signin input[type="password"] {
+			  margin-bottom: 10px;
+			  border-top-left-radius: 0;
+			  border-top-right-radius: 0;
+			}
+
+		</style>	
+		
+		
+    </head>
+    <body class="text-center">
+        
+       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html"><i class="fas fa-chalkboard-teacher"></i> LearnWell</a>
+                </div>
+                <ul class="navbar-nav ml-auto nav-right">
+                    <li class="nav-item"><a class="nav-link" href="signup.html"><i class="fas fa-user-plus"></i> SignUp</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <form class="form-signin" method="post" action="">
+            <img class="mb-4" src="images/signin.png" alt="signin" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+<!--            <span id='message'></span>-->
+            
+            <button class="btn btn-lg btn-primary btn-block" id="signin" type="submit">Sign in</button>
+            <hr align="center">
+            <p class="mt-2 mb-3 text-muted"> Don't have an Account? <a href="signup.html">Create One</a></p>
+        </form>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </body>
+</html>

@@ -1,0 +1,122 @@
+<html>
+    <head>
+            <meta charset="utf-8">
+            <meta name="author" content="Yash Agrawal and Shivam Kalhans">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+            <link rel="shortcut icon" href="icon.png" />
+
+            <title>
+                LearnWell
+            </title>
+            <style type="text/css">
+                body{
+                    background-color: #f5f5f5;
+                }
+            </style>
+			<script>
+			var check = function() {
+			  if (document.getElementById('input_pass').value ==
+				document.getElementById('input_pass_conf').value) {
+				document.getElementById('message').style.color = 'green';
+				document.getElementById('message').innerHTML = 'matching';
+				document.getElementById("register").disabled = false;
+			  } else {
+				document.getElementById('message').style.color = 'red';
+				document.getElementById('message').innerHTML = 'not matching';
+				document.getElementById("register").disabled = true;
+			  }
+			}
+		 </script>
+        
+    </head>
+
+    <body>
+        
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html"><i class="fas fa-chalkboard-teacher"></i> LearnWell</a>
+                </div>
+                <ul class="navbar-nav ml-auto nav-right">
+                    <li class="nav-item"><a class="nav-link" href="login.html"><i class="fas fa-user"></i> Login</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                    <header class="card-header">
+                        <h4 class="card-title mt-2">Sign up</h4>
+                    </header>
+                    <article class="card-body">
+                    <form id="c_registration" method="post" action="">
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="input_fname">First name</label>   
+                                <input type="text" class="form-control" name="fname" id="input_fname" required>
+                            </div> <!-- form-group end.// -->
+                            <div class="col form-group">
+                                <label for="input_lname">Last name</label>
+                                <input type="text" class="form-control" name="lname" id="input_lname" required>
+                            </div> <!-- form-group end.// -->
+                        </div> <!-- form-row end.// -->
+                        <div class="form-group">
+                            <label for="input_email">Email address</label>
+                            <input type="email" class="form-control" name="email" id="input_email" required>
+                        </div> <!-- form-group end.// -->
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="input_phone">Contact Number </label>   
+                                <input type="text" class="form-control" name="contact" id="input_phone" pattern="0?[0-9]{10}" maxlength="11" title="Please Enter your 10 digit mobile number" required>
+                            </div> <!-- form-group end.// -->
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="gender" value="Male" required>
+                              <span class="form-check-label"> Male </span>
+                            </label>
+                            <label class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="gender" value="Female">
+                              <span class="form-check-label"> Female</span>
+                            </label>
+                        </div> <!-- form-group end.// -->
+                       <div class="form-group">
+                            <label for="input_email">Profession</label>
+                            <input type="text" class="form-control" name="profession" id="profession" required>
+                        </div> <!-- form-group end.// -->
+                        <div class="form-group">
+                            <label for="input_pass">Create password</label>
+                            <input class="form-control" type="password" data-minlength="6" name="password" id="input_pass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+								   title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters"
+								    onkeyup='check();' required>
+                        </div> <!-- form-group end.// -->  
+                        <div class="form-group">
+                            <label for="input_pass_conf">Confirm password</label>
+                            <input class="form-control" type="password" id="input_pass_conf" onkeyup='check()'required>
+							<span id='message'></span>
+                        </div> <!-- form-group end.// -->  
+                        <div class="form-group">
+                            <button type="submit" id="register" class="btn btn-primary btn-block"> Register  </button>
+                        </div> <!-- form-group// -->      
+                        <small class="text-muted">By clicking the 'Register' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>                                          
+                    </form>
+                    </article> <!-- card-body end .// -->
+                    <div class="border-top card-body text-center">Have an account? <a href="login.html">Log In</a></div>
+                    </div> <!-- card.// -->
+                </div> <!-- col.//-->
+
+            </div> <!-- row.//-->
+
+
+        </div> 
+        <!--container end.//-->
+        <br><br>
+<!--         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </body>
+</html>
