@@ -14,10 +14,10 @@ import smtplib
 # Create your views here.
 
 def index(request):
-    return render(request,'bsl/index.html')
+    
     if request.user.is_authenticated:
         userId = User.objects.get(id=request.user.id)
-        return render(request, 'bsl/index.html', {'user':request.user})
+        return HttpResponseRedirect(reverse('bsl:dashboard'))
     else:
         return render(request, 'bsl/index.html')
 
@@ -29,7 +29,7 @@ def login_(request):
 
     print("Login Request")
     if request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('bsl:index'))
+        return HttpResponseRedirect(reverse('bsl:dashboard'))
 
     try:
         log_in = request.POST['login']
@@ -42,7 +42,7 @@ def login_(request):
         password = request.POST['password']
     except MultiValueDictKeyError:
         error_message = "Missing Credentials"
-        return render(request, 'bsl/login.html', {'error_message':error_message})
+        return HttpResponseRedirect(reverse('bsl:dashboard'))
 
     print("User getting auth")
     user = authenticate(request, username=username,password=password)
@@ -102,3 +102,7 @@ def register_user(usr,mail,passcode):
         return "success"
 
     return "Username is already registered"
+
+
+def dashboard(request):
+    return render(request,'bsl/dashboard.html')
