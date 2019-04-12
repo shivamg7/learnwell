@@ -118,9 +118,12 @@ def showQuiz(request):
     myQuestion = Question.objects.all()[slice: slice+1]
     #Receive a POST request
 
-    
+
 
     #Add new objects to db
 
     #render pages
     return render(request, 'bsl/quiz.html', {'question':myQuestion[0]})
+
+def submitAnswer(request,questionId,answer):
+    
