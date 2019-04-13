@@ -39,5 +39,5 @@ for i in range(1,100):
 
     #print(text+','+optionA+','+optionB+','+optionC+','+optionD+','+correct)
 
-    questionVar = Question(text=text,optionA=optionA,optionB=optionB,optionC=optionC,optionD=optionD,answer=correct,category=category,level=5)
+    questionVar = Question(text=text,optionA=optionA,optionB=optionB,optionC=optionC,optionD=optionD,answer=correct,category=category,rating=i*17)
     questionVar.save()

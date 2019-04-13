@@ -40,24 +40,26 @@
 
         </script>
 
-                <form class="form-signin" method="post" action="{% url 'bsl:submitAnswer' question.id 'A'%}" style="max-width:50%">
-                    {%csrf_token%}
+        <div class="container text-center">
+
+                <form class="form-signin" method="post" style="max-width:50%" disabled="True">
+                    <fieldset disabled="disabled">
                 <h3>{{question.text}} :</h3><br>
                 <p>
                     <label for="optionA">{{question.optionA}}</label>
-                    <input type="radio" onclick="clicked()" name="ans" value="A" required>
+                    <input type="radio" onclick="clicked()" name="ans" value="A" {%if optionA %}checked{%endif%}>
                 </p>
                 <p>
                     <label for="optionB" >{{question.optionB}}</label>
-                    <input type="radio" onclick="clicked()" name="ans" value="B">
+                    <input type="radio" onclick="clicked()" name="ans" value="B" {%if optionB %}checked{%endif%}>
                 </p>
                 <p>
                     <label for="optionC" >{{question.optionC}}</label>
-                    <input type="radio" onclick="clicked()" name="ans" value="C">
+                    <input type="radio" onclick="clicked()" name="ans" value="C" {%if optionC %}checked{%endif%}>
                 </p>
                 <p>
                     <label for="optionD" >{{question.optionD}}</label>
-                    <input type="radio" onclick="clicked()" name="ans" value="D">
+                    <input type="radio" onclick="clicked()" name="ans" value="D" {%if optionD %}checked{%endif%}>
                 </p>
 
                 <input type="text" name="clicks" id="clickid" value="" hidden="true">
@@ -67,10 +69,23 @@
                 <div id="submit">
                     <button name='submit' onclick="submitted()" class="btn btn-lg btn-primary btn-block" id="submit_but" >Submit Answer</button>
                 </div>
-                </form>
+              </fieldset>
+            </form>
+                <br>
 
+								                   {%if correctAnswer == 'T' %} <h5>Congtatulations! You answered correctly.</h5>
+								                    <h5>Your Confidence Level is: {{confi}} </h5> {%endif%}
+								                    <br>
+                                    {% if correctAnswer == 'F' %}
+                                    <h5>You're Wrong</h5>
+                                    <h2> Correct Answer is : {{question.answer}} </h2>{%endif%}
+								                    <h5>Explanation: {{question.explanation}}</h5>
+								                    <p></p>
 
-
+                                    <div class="form-signin">
+						                                  <a href = "{%url 'bsl:quiz' %}"><button name='nextQuestion' onclick="nextQuestion()" class="btn btn-lg btn-primary btn-block" id="next_Question" >Next Question</button></a>
+                                        </div>
+</div>
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 

@@ -18,7 +18,13 @@ class user(models.Model):
     gender = models.CharField(max_length=2,choices=GENDER_CHOICES)
     profession = models.CharField(max_length=30)
     rating = models.IntegerField(default=1500)
-
+    lower_bound = models.IntegerField(default=0)
+    upper_bound = models.IntegerField(default=0)
+    question_count = models.IntegerField(default=0)
+    session_confidence = models.IntegerField(default=0)
+    cSum = models.IntegerField(default=0)
+    c_level_avg = models.IntegerField(default=0)
+    score = models.IntegerField(default=0)
 
     def __str__(self):
         return self.username
@@ -46,7 +52,6 @@ class Question(models.Model):
     optionD = models.CharField(max_length=300)
     answer = models.CharField(max_length=1,choices=ANSWER_CHOICES)
     category = models.CharField(max_length=3,choices=CATEGORY_CHOICES)
-    level = models.IntegerField(default=2)
     explanation = models.CharField(max_length=500,default="Lorem")
     rating = models.IntegerField(default=500)
     counter = models.IntegerField(default=0)
@@ -61,12 +66,15 @@ class Attempt(models.Model):
     question = models.ForeignKey(Question,on_delete=models.CASCADE)
     userAtt = models.ForeignKey(user,on_delete=models.CASCADE)
     result = models.CharField(max_length=1,choices=(('C','Correct'),('W','Wrong')))
-    confidenceLevel = models.IntegerField()
+    clicks = models.IntegerField(default=1)
+    time_diff = models.IntegerField(default=0)
+    confidenceLevel = models.IntegerField(default=10)
 
 class Stats(models.Model):
     userV = models.ForeignKey(user,on_delete=models.CASCADE)
     quizid = models.IntegerField()
-    preSkill = models.IntegerField()
-    postSkill = models.IntegerField()
+    time = models.DateTimeField(default=timezone.now())
     score = models.IntegerField()
-    confidenceLevel = models.IntegerField()
+
+    def __str__(self):
+        return self.userV.username+" "+str(self.quizid)

@@ -1,0 +1,24 @@
+
+{%extends 'base.html' %}
+
+
+{%block head%}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+{%endblock%}
+
+{% block body %}
+
+
+        <div class="container text-center">
+              <h2 style="text-align: center">RESULTS</h2>
+              <h2> Your score is: {{userVar.score}} </h2>              
+              <div>
+                  Click to move to the dashboard :
+                  <a href="{%url 'bsl:dashboard' %}"><button class="btn btn-primary btn-md">Dashboard</button></a>
+              </div>
+      </div>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+{%endblock%}

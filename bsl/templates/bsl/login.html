@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="css/loginstyle.css">
-        <link rel="shortcut icon" href="icon.png" />
+        {%load static%}
         <title>
             LearnWell
         </title>
@@ -68,7 +68,7 @@
        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html"><i class="fas fa-chalkboard-teacher"></i> LearnWell</a>
+                    <a class="navbar-brand" href="{%url 'bsl:index' %}"><i class="fas fa-chalkboard-teacher"></i> LearnWell</a>
                 </div>
                 <ul class="navbar-nav ml-auto nav-right">
                     <li class="nav-item"><a class="nav-link" href="{% url 'bsl:register'}"><i class="fas fa-user-plus"></i> SignUp</a></li>
@@ -78,7 +78,7 @@
 
         <form class="form-signin" method="post" action="{% url 'bsl:login' %}">
           {%csrf_token%}
-            <img class="mb-4" src="images/signin.png" alt="signin" width="72" height="72">
+            <img class="mb-4" src="{%static 'bsl/images/signin.png'%}" alt="signin" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
             <label for="username" class="sr-only">username</label>
             <input  id="username" class="form-control" name="username" placeholder="username" required autofocus>
