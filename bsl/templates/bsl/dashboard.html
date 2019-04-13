@@ -28,8 +28,25 @@
 
         </script>
 
+
+
     </head>
     <body class="text-center">
+
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+ google.load('visualization', '1.0', {'packages':['corechart']});
+  google.setOnLoadCallback(drawChart);
+   function drawChart() { var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Number');
+      data.addColumn('number', 'Number/10');
+       data.addRows( {{ data }} );
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+         chart.draw(data, {width: 400, height: 240, title: "Numbers"}); }
+          </script>
+
 
        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <div class="container">
@@ -53,7 +70,6 @@
         </nav>
 
 		<div id="buttons" class="container text-center">
-			<button type="button" class="btn btn-outline-dark btn-lg" onclick="relocate1()"><i class="fas fa-chart-line"></i>  Check Stats</button>
 			<button type="button" class="btn btn-outline-dark btn-lg" onclick="relocate2()"><i class="far fa-file-alt"></i> Attempt Quiz</button>
 		</div>
 
@@ -61,9 +77,10 @@
           {%for score in scores%}
             <p> Score in quiz {{score.quizid}} is {{score.score}} </p>
           {%endfor%}
+        </div>
+      <div class="chart_div">
+      </div>
 
-
-  </div>
 
          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

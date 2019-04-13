@@ -72,7 +72,7 @@ class Attempt(models.Model):
 
 class Stats(models.Model):
     userV = models.ForeignKey(user,on_delete=models.CASCADE)
-    quizid = models.IntegerField()
+    quizid = models.IntegerField(default=0)
     time = models.DateTimeField(default=timezone.now())
     score = models.IntegerField()
 

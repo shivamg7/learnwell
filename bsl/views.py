@@ -112,7 +112,7 @@ def dashboard(request):
     userVar = user.objects.get(id=request.user.id)
     scoreVar = Stats.objects.filter(userV=userVar)
 
-    return render(request,'bsl/dashboard.html',{'scores':scoreVar})
+    return render(request,'bsl/dashboard.html',{'scores':scoreVar,'data':scoreVar})
 
 
 def showQuiz(request):
@@ -127,7 +127,7 @@ def showQuiz(request):
         userVar.lower_bound = lower_bound
         userVar.upper_bound = upper_bound
 
-    userVar.score = 0
+
     range_ = userVar.upper_bound - userVar.lower_bound
     range_ = range_/3
     lower_bound = userVar.lower_bound
@@ -271,9 +271,19 @@ def submitAnswer(request,questionId,answer):
         print(answer+" correct is "+questionVar.answer)
         attempVar = Attempt(question=questionVar,userAtt=userVar,result=result,clicks=clicks,time_diff=time_diff)
         attempVar.save()
-        myStat = Stats(userV=userVar,quizV=questionVar,score=userVar.score)
 
-        return render(request,"bsl/results.html",{'userVar':userVar,'scores':scoreVar})
+        myStat = Stats.objects.filter(userV=userVar).order_by('quizid')
+        if(len(myStat)!=0):
+            quizid = myStat[0].quizid + 1
+        else:
+            quizid = 1
+
+        scoreVar = Stats(userV=userVar,quizid=quizid,score=userVar.score)
+        myScore = userVar.score
+        scoreVar.save()
+        userVar.score = 0
+        userVar.save()
+        return render(request,"bsl/results.html",{'userVar':userVar,'scores':scoreVar,'myscore':myScore})
 
     questionVar.save()
     userVar.save()
